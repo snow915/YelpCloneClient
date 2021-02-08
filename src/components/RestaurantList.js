@@ -6,6 +6,18 @@ const RestaurantList = props => {
 
     const {getRestaurants, setRestaurants} = useContext(RestaurantsContext);
 
+    const deleteRow = async(id) => {
+        try{
+            const response = await RestaurantFinder.delete("/"+id);
+            setRestaurants( getRestaurants.filter(restaurant => {
+                return restaurant.id !== id;
+            }) );
+        } catch (e) {
+            console.log(e);
+        }
+
+    }
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -46,7 +58,7 @@ const RestaurantList = props => {
                                     </button>
                                 </td>
                                 <td>
-                                    <button className="btn btn-danger">
+                                    <button onClick={() => deleteRow(restaurant.id)} className="btn btn-danger">
                                         Delete
                                     </button>
                                 </td>
