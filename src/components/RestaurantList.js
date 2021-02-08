@@ -22,7 +22,7 @@ const RestaurantList = props => {
     return (
         <div className="list-group">
             <table className="table table-hover table-dark">
-                <thead>
+                <thead key={1}>
                 <tr className="bg-primary">
                     <th scope="col">Restaurant</th>
                     <th scope="col">Location</th>
@@ -33,7 +33,7 @@ const RestaurantList = props => {
                 </tr>
                 </thead>
                 <tbody>
-                    {getRestaurants.map((restaurant) => {
+                    {getRestaurants && getRestaurants.map((restaurant) => {
                         return(
                             <tr key={restaurant.id}>
                                 <td>{restaurant.name}</td>
